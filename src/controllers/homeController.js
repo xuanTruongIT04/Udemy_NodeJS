@@ -8,10 +8,15 @@ const getABC = (req, res) => {
     res.send('Check abc!');
 };
 
+const postCreateUser = (req, res) => {
+    console.log(">>> CHECK REQ: ", req.body);
+}
+
 const getXuanTruongHocNodeJS = (req, res) => {};
 
 module.exports = {
     getHomePage,
     getABC,
     getXuanTruongHocNodeJS,
+    postCreateUser
 };

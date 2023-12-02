@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Home page</title>
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
         <div class="topnav">
@@ -14,5 +14,27 @@
             <a href="#about">About</a>
         </div>
         <H1>HOME PAGE</H1>
+
+        <div class="form-add-new">
+            <form action="/create-user" method="POST">
+                <fieldset>
+                    <legend>Add New Users</legend>
+                    <div class="input-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" />
+                    </div>
+                    <div class="input-group">
+                        <label for="name">Name:</label>
+                        <input type="name" id="name" name="name" />
+                    </div>
+                    <div class="input-group">
+                        <label for="city">City:</label>
+                        <input type="city" id="city" name="city" />
+                    </div> <BR>
+
+                    <input type="submit" class="btn-save" value="Save" />
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>
