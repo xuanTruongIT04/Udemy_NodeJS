@@ -4,8 +4,6 @@ const router = express.Router();
 
 router.get('/', getHomePage);
 
-
-
 router.get('/abc', getABC);
 
 router.get('/xuantruonghocnodejs', (req, res) => {
