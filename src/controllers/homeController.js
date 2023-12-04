@@ -5,31 +5,36 @@ const getHomePage = (req, res) => {
 };
 
 const getABC = (req, res) => {
-    res.send('Check abc!');
+    connection.query(
+        `  SELECT * FROM Users`,
+        function (err, results) {
+            res.send(results);
+        }
+    );
+    
 };
 
-const postCreateUser = (req, res) => {
+const postCreateUser = async (req, res) => {
     let email = req.body.email;
     let name = req.body.name;
     let city = req.body.city;
-
+    
     console.log('>> EMAIL = ', email, '>> NAME = ', name, '>> CITY = ', city);
 
-    connection.query(
-        `  INSERT INTO Users (email, name, city)
-        VALUES (?, ?, ?);`,
-        [email, name, city],
-        function (err, results) {
-            res.send('CREATT USER SUCESSFUL');
-        }
-    );
+    let [results, fields] = await connection.query(
+        `  INSERT INTO Users (email, name, city) VALUES (?, ?, ?);`, [email, name, city]);
+
+    console.log(">>> CHECK RESULTS: ", results);
+    res.send("CREATT USER SUCCESSUL");
 };
 
-const getXuanTruongHocNodeJS = (req, res) => {};
+const getCreatePage = (req, res) => {
+    res.render("create.ejs")
+};
 
 module.exports = {
     getHomePage,
     getABC,
-    getXuanTruongHocNodeJS,
+    getCreatePage,
     postCreateUser,
 };
