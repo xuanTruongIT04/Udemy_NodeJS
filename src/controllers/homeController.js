@@ -3,6 +3,7 @@ const {
     getAllUser,
     createUser,
     getUserById,
+    updateUser,
 } = require('../services/CRUDService');
 
 const getHomePage = async (req, res) => {
@@ -41,7 +42,16 @@ const getUpdatePage = async (req, res) => {
     res.render('update.ejs', { user: user });
 };
 
-const postUpdateUser = (req, res) => {};
+const postUpdateUser = (req, res) => {
+    let userId = req.body.userId;
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+    console.log('>>> CHECK REQUEST: ', req.body);
+
+    updateUser(userId, email, name, city);
+    res.redirect("/")
+};
 
 module.exports = {
     getHomePage,

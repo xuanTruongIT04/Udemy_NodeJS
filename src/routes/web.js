@@ -8,7 +8,7 @@ router.get('/create', getCreatePage);
 router.post('/create-user', postCreateUser);
 
 router.get('/update/:id', getUpdatePage);
-router.get('/update-user', postUpdateUser);
+router.post('/update-user', postUpdateUser);
 
 router.get('/abc', getABC);
 
