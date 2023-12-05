@@ -80,3 +80,36 @@ fieldset {
     border: 1px solid #04aa6d;
     outline: none;
 }
+
+.section-user {
+    padding: 15px 20px;
+}
+
+.tbl-list-user {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px auto;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #059862;
+}
+
+tr:hover {
+    color: #ffffff;
+}
+
+.btn-action {
+    transition: all 0.25 ease-in-out; 
+}
+
+.btn-action:hover {
+    cursor: pointer;
+}

@@ -13,62 +13,26 @@
         </div>
         <div class="section-user">
             <h2>List User</h2>
-            <style>
-                .section-user {
-                    padding: 15px 20px;
-                }
-
-                .tbl-list-user {
-                    border-collapse: collapse;
-                    width: 100%;
-                    margin: 15px auto;
-                }
-
-                th,
-                td {
-                    padding: 8px;
-                    text-align: left;
-                    border-bottom: 1px solid #ddd;
-                }
-
-                tr:hover {
-                    background-color: #059862;
-                }
-                tr:hover {
-                    color: #ffffff;
-                }
-            </style>
             <table class="tbl-list-user">
                 <tr>
                     <th>ID</th>
                     <th>Email</th>
                     <th>Name</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
+                <% listUsers.forEach((user) => { %>
                 <tr>
-                    <td>Peter</td>
-                    <td>Griffin</td>
-                    <td>$100</td>
-                    <td>$100</td>
+                    <td><%= user.id %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.city %></td>
+                    <td>
+                        <a href="/update/<%= user.id %>" class="btn-action">Edit</a>
+                        <button class="btn-action">Delete</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>Lois</td>
-                    <td>Griffin</td>
-                    <td>$150</td>
-                    <td>$150</td>
-                </tr>
-                <tr>
-                    <td>Joe</td>
-                    <td>Swanson</td>
-                    <td>$300</td>
-                    <td>$300</td>
-                </tr>
-                <tr>
-                    <td>Cleveland</td>
-                    <td>Brown</td>
-                    <td>$250</td>
-                    <td>$250</td>
-                </tr>
+                <% }) %>
             </table>
         </div>
     </body>
