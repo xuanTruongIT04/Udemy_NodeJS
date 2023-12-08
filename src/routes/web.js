@@ -1,5 +1,14 @@
 const express = require('express');
-const { getHomePage, getABC, getCreatePage, postCreateUser, getUpdatePage, postUpdateUser } = require('../controllers/homeController');
+const {
+    getHomePage,
+    getABC,
+    getCreatePage,
+    postCreateUser,
+    getUpdatePage,
+    postUpdateUser,
+    deleteUser,
+    handleDeleteUser,
+} = require('../controllers/homeController');
 const router = express.Router();
 
 router.get('/', getHomePage);
@@ -12,8 +21,11 @@ router.post('/update-user', postUpdateUser);
 
 router.get('/abc', getABC);
 
+router.post('/delete-user/:id', deleteUser);
+router.post('/delete-user', handleDeleteUser);
+
 router.get('/xuantruonghocnodejs', (req, res) => {
     res.render('sample.ejs');
-}); 
+});
 
 module.exports = router;

@@ -24,11 +24,19 @@ const updateUser = async (id, email, name, city) => {
 
 const getUserById = async (id) => {
     let [results, fields] = await connection.query(
-        `SELECT * FROM Users u WHERE u.id = ?`,
+        `SELECT * FROM Users WHERE id = ?`,
         [id]
     );
     let user = results && results.length > 0 ? results[0] : {};
     return user;
+};
+
+const postDeleteUser = async (id) => {
+    let [results, fields] = await connection.query(
+        `DELETE FROM Users WHERE id = ?`,
+        [id]
+    );
+    return results;
 };
 
 module.exports = {
@@ -36,4 +44,5 @@ module.exports = {
     createUser,
     getUserById,
     updateUser,
+    postDeleteUser
 };
