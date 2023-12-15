@@ -10,6 +10,20 @@ const getUsersAPI = async (req, res) => {
     });
 };
 
+const postUsersAPI = async (req, res) => {
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+
+    let user = await User.create({ email, name, city });
+
+    return res.status(200).json({
+        errorCode: 0,
+        data: user
+    });
+};
+
 module.exports = {
-    getUsersAPI
+    getUsersAPI,
+    postUsersAPI
 }
