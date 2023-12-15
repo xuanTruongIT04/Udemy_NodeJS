@@ -9,7 +9,7 @@ const {
 const User = require('../models/user');
 
 const getHomePage = async (req, res) => {
-    let allUsers = [];
+    let allUsers = await User.find({})
     return res.render('../views/home.ejs', { listUsers: allUsers });
 };
 

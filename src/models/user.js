@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Set up database
 const userSchema = new mongoose.Schema({
     name: String,
-    emial: String,
+    email: String,
     city: String,
 });
 
