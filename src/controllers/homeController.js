@@ -9,7 +9,7 @@ const {
 const User = require('../models/user');
 
 const getHomePage = async (req, res) => {
-    let allUsers = await User.find({})
+    let allUsers = await User.find({});
     return res.render('../views/home.ejs', { listUsers: allUsers });
 };
 
@@ -28,29 +28,32 @@ const postCreateUser = async (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
 
-    // let results = createUser(email, name, city);
-
-    // console.log('>>> CHECK RESULTS: ', results);
-
     await User.create({ email, name, city });
-
     res.send('CREATT USER SUCCESSUL');
 };
 
 const getUpdatePage = async (req, res) => {
-    let user = await getUserById(req.params.id);
+    let user = await User.findOne({ _id: req.params.id });
+    console.log(user);
 
     res.render('update.ejs', { user: user });
 };
 
-const postUpdateUser = (req, res) => {
+const postUpdateUser = async(req, res) => {
     let userId = req.body.userId;
     let email = req.body.email;
     let name = req.body.name;
     let city = req.body.city;
-    console.log('>>> CHECK REQUEST: ', req.body);
 
-    updateUser(userId, email, name, city);
+    // console.log('>>> CHECK REQUEST: ', req.body);
+
+    let update = {
+        name: name,
+        email: email,
+        city: city
+    }
+
+    await User.updateOne({ _id: userId}, update);
     res.redirect('/');
 };
 
