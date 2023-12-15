@@ -19,8 +19,14 @@ configViewEngine(app);
 app.use('/', webRouter);
 
 // Test connection
-connection();
+;(async()=> {
+    try {
+        await connection();
+        app.listen(port, () => {
+            console.log(`Example app listening on port ${port}`);
+        });
+    } catch(err) {
+        console.log("Error to database: ", err);
+    }
+})()
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
