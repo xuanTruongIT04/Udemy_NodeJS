@@ -6,11 +6,10 @@ const {
     updateUser,
     postDeleteUser,
 } = require('../services/CRUDService');
+const User = require('../models/user');
 
 const getHomePage = async (req, res) => {
-    // let [results, fields] = await connection.query(`SELECT * FROM Users u`);
-    let allUsers = await getAllUser();
-    // console.log('>>CHECK RES: ', results);
+    let allUsers = [];
     return res.render('../views/home.ejs', { listUsers: allUsers });
 };
 
@@ -29,9 +28,12 @@ const postCreateUser = async (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
 
-    let results = createUser(email, name, city);
+    // let results = createUser(email, name, city);
 
-    console.log('>>> CHECK RESULTS: ', results);
+    // console.log('>>> CHECK RESULTS: ', results);
+
+    await User.create({ email, name, city });
+
     res.send('CREATT USER SUCCESSUL');
 };
 

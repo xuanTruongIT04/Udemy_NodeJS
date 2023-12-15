@@ -4,7 +4,6 @@ const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
 const mysql = require('mysql2');
 const connection = require('./config/database');
-const Kitten = require('./models/Kitten');
 
 // import express from 'express'
 const app = express();
@@ -18,10 +17,6 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 configViewEngine(app);
 
 app.use('/', webRouter);
-
-const cat = new Kitten({ name: 'Xuan Truong modal' });
-cat.save();
-
 
 // Test connection
 (async () => {
