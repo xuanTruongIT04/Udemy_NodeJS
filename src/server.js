@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require('express'); // common js
 const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
+const apiRouter = require('./routes/api');
 const mysql = require('mysql2');
+
 const connection = require('./config/database');
 
 // import express from 'express'
@@ -17,6 +19,7 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 configViewEngine(app);
 
 app.use('/', webRouter);
+app.use('/v1/api/', apiRouter);
 
 // Test connection
 (async () => {
