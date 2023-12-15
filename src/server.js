@@ -4,7 +4,7 @@ const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
 const mysql = require('mysql2');
 const connection = require('./config/database');
-const mongoose = require('mongoose');
+const Kitten = require('./models/Kitten');
 
 // import express from 'express'
 const app = express();
@@ -19,14 +19,7 @@ configViewEngine(app);
 
 app.use('/', webRouter);
 
-// Set up database
-const kittySchema = new mongoose.Schema({
-    name: String,
-});
-
-const Kitten = mongoose.model('Kitten', kittySchema);
-
-const cat = new Kitten({ name: 'Xuan Truong cat' });
+const cat = new Kitten({ name: 'Xuan Truong modal' });
 cat.save();
 
 
