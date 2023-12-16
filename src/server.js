@@ -4,8 +4,11 @@ const configViewEngine = require('./config/viewEngine');
 const webRouter = require('./routes/web');
 const apiRouter = require('./routes/api');
 const mysql = require('mysql2');
-
 const connection = require('./config/database');
+const fileUpload = require('express-fileupload');
+
+// default options
+app.use(fileUpload());
 
 // import express from 'express'
 const app = express();
