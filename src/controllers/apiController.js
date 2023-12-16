@@ -60,10 +60,9 @@ const postUploadFileSingleAPI = async (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }
 
-    await uploadSingleFile(req.files.image);
-    // console.log("CHECK RESULTS: ", results);
+    let result = await uploadSingleFile(req.files.image);
 
-    return res.send('OK single');
+    return res.send(result);
 };
 
 const postUploadFileMultipleAPI = async (req, res) => {
@@ -71,10 +70,9 @@ const postUploadFileMultipleAPI = async (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }
 
-    await uploadMultipleFiles(req.files.image);
-    // console.log("CHECK RESULTS: ", results);
+    let result = await uploadMultipleFiles(req.files.image);
 
-    return res.send('OK single');
+    return res.send(result);
 };
 
 module.exports = {

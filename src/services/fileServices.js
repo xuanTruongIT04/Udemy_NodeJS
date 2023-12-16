@@ -15,7 +15,7 @@ const uploadSingleFile = async (fileObject) => {
         await fileObject.mv(uploadPath);
         return {
             status: 'success',
-            path: 'link-image',
+            path: fileObject.name,
             error: null,
         };
     } catch (err) {
@@ -32,6 +32,8 @@ const uploadMultipleFiles = async (listFileObject) => {
     try {
         let timeNow = Date.now();
         console.log(listFileObject);
+        let listuploadPath = [];
+        let countSuccess = 0;
         for (let i = 0; i < listFileObject.length; i++) {
             let fileName = path.parse(listFileObject[i].name).name;
             let ext = path.parse(listFileObject[i].name).ext;
@@ -41,11 +43,28 @@ const uploadMultipleFiles = async (listFileObject) => {
                 '../public/images/',
                 fileName + timeNow + ext
             );
-            await listFileObject[i].mv(uploadPath);
+            try {
+                await listFileObject[i].mv(uploadPath);
+                listuploadPath.push({
+                    status: 'success',
+                    fileName: listFileObject[i].name,
+                    path: uploadPath,
+                    error: null,
+                });
+                countSuccess ++;
+            } catch (err) {
+                listuploadPath.push({
+                    status: 'failed',
+                    fileName: listFileObject[i].name,
+                    path: uploadPath,
+                    error: JSON.stringify(err),
+                });
+            }
         }
         return {
             status: 'success',
-            path: 'link-image',
+            countSuccess: countSuccess,
+            path: listuploadPath,
             error: null,
         };
     } catch (err) {
