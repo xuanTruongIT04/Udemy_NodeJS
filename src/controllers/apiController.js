@@ -76,10 +76,10 @@ const postUploadFileMultipleAPI = async (req, res) => {
 };
 
 module.exports = {
-    getUsersAPI,
     postUsersAPI,
     putUsersAPI,
     deleteUsersAPI,
     postUploadFileSingleAPI,
-    postUploadFileMultipleAPI
+    postUploadFileMultipleAPI,
+    getUsersAPI,
 };
