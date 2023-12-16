@@ -1,12 +1,13 @@
 const connection = require('../config/database');
 const User = require('../models/user');
+const { uploadSingleFile } = require('../services/fileServices');
 
 const getUsersAPI = async (req, res) => {
     let users = await User.find({});
-    
+
     return res.status(200).json({
         EC: 0,
-        data: users
+        data: users,
     });
 };
 
@@ -19,7 +20,7 @@ const postUsersAPI = async (req, res) => {
 
     return res.status(200).json({
         EC: 0,
-        data: user
+        data: user,
     });
 };
 
@@ -41,22 +42,34 @@ const putUsersAPI = async (req, res) => {
 
     return res.status(200).json({
         EC: 0,
-        data: user
+        data: user,
     });
 };
 
 const deleteUsersAPI = async (req, res) => {
     let user = await User.deleteOne({ _id: req.body.userId });
-    
+
     return res.status(200).json({
         EC: 0,
-        data: user
+        data: user,
     });
+};
+
+const postUploadFileSingleAPI = async (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+    }
+
+    let results = await uploadSingleFile(req.files.image);
+    // console.log("CHECK RESULTS: ", results);
+
+    return res.send('OK single');
 };
 
 module.exports = {
     getUsersAPI,
     postUsersAPI,
     putUsersAPI,
-    deleteUsersAPI
-}
+    deleteUsersAPI,
+    postUploadFileSingleAPI,
+};

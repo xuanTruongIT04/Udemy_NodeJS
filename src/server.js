@@ -7,12 +7,13 @@ const mysql = require('mysql2');
 const connection = require('./config/database');
 const fileUpload = require('express-fileupload');
 
-// default options
-app.use(fileUpload());
 
 // import express from 'express'
 const app = express();
 const port = process.env.PORT || 8888;
+
+// default options
+app.use(fileUpload());
 
 // Config reg in body
 app.use(express.json()); // Used to parse JSON bodies
