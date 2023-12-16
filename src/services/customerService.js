@@ -1,7 +1,17 @@
 const Customer = require('../models/customer');
-const createUserCustomerService = async (dataCustomer) => {
+const showCustomerService = async () => {
     try {
-        let result = await Customer.create(dataCustomer)
+        let result = await Customer.find({});
+        return result;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+const createCustomerService = async (dataCustomer) => {
+    try {
+        let result = await Customer.create(dataCustomer);
         return result;
     } catch (err) {
         console.log(err);
@@ -11,7 +21,7 @@ const createUserCustomerService = async (dataCustomer) => {
 
 const createArrayCustomersService = async (arrayCustomer) => {
     try {
-        let result = await Customer.insertMany(arrayCustomer)
+        let result = await Customer.insertMany(arrayCustomer);
         return result;
     } catch (err) {
         console.log(err);
@@ -20,6 +30,7 @@ const createArrayCustomersService = async (arrayCustomer) => {
 };
 
 module.exports = {
-    createUserCustomerService,
-    createArrayCustomersService
+    showCustomerService,
+    createCustomerService,
+    createArrayCustomersService,
 };

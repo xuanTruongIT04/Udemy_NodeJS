@@ -1,10 +1,19 @@
 const { uploadSingleFile } = require('../services/fileServices');
 const {
-    createUserCustomerService,
+    showCustomerService,
+    createCustomerService,
     createArrayCustomersService,
 } = require('../services/customerService');
 
 module.exports = {
+    getCreateCustomerAPI: async (req, res) => {
+        let customers = await showCustomerService();
+        return res.status(200).json({
+            EC: 0,
+            data: customers,
+        });
+    },
+
     postCreateCustomerAPI: async (req, res) => {
         let { name, email, city, address, phone, description } = req.body;
         let imageUrl = '';
@@ -25,7 +34,7 @@ module.exports = {
             image: imageUrl,
         };
 
-        let customer = await createUserCustomerService(dataCustomer);
+        let customer = await createCustomerService(dataCustomer);
         return res.status(200).json({
             EC: 0,
             data: customer,
@@ -38,7 +47,7 @@ module.exports = {
                 req.body.customers
             );
 
-            if(customers) {
+            if (customers) {
                 return res.status(200).json({
                     EC: 0,
                     data: customers,
@@ -49,7 +58,6 @@ module.exports = {
                     message: 'Failed',
                 });
             }
-            
         } catch (err) {
             return res.status(422).json({
                 EC: -1,
