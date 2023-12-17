@@ -5,7 +5,9 @@ const {
     getCustomersAPI,
     postCreateCustomerAPI,
     postCreateArrayCustomerAPI,
-    putUpdateCustomerAPI
+    putUpdateCustomerAPI,
+    deleteACustomerAPI,
+    deleteArrayCustomerAPI
 } = require('../controllers/customerController');
 
 const {
@@ -27,7 +29,10 @@ routerAPI.post('/files', postUploadFileMultipleAPI);
 
 routerAPI.get('/customers', getCustomersAPI);
 routerAPI.post('/customers', postCreateCustomerAPI);
-routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
 routerAPI.put('/customers', putUpdateCustomerAPI);
+routerAPI.delete('/customers', deleteACustomerAPI);
+
+routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
+routerAPI.delete('/customers-many', deleteArrayCustomerAPI);
 
 module.exports = routerAPI;
