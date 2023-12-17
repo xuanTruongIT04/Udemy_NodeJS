@@ -6,6 +6,7 @@ const apiRouter = require('./routes/api');
 const mysql = require('mysql2');
 const connection = require('./config/database');
 const fileUpload = require('express-fileupload');
+const { MongoClient } = require('mongodb');
 
 
 // import express from 'express'
@@ -28,7 +29,21 @@ app.use('/v1/api/', apiRouter);
 // Test connection
 (async () => {
     try {
-        await connection();
+        // Using mongoose
+        // await connection();
+
+        // Using mongodb driver
+        const url = process.env.DB_HOST_WITH_DRIVER;
+        const client = new MongoClient(url);
+        const dbName = process.env.DB_NAME;
+
+        // Use connect method to connect to the server
+        await client.connect();
+        console.log('Connected successfully to server');
+        
+        const db = client.db(dbName);
+        const collection = db.collection('documents');
+
         app.listen(port, () => {
             console.log(`Example app listening on port ${port}`);
         });
