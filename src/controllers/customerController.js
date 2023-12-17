@@ -10,7 +10,15 @@ const {
 
 module.exports = {
     getCustomersAPI: async (req, res) => {
-        let customers = await showCustomerService();
+        let limit = req.query.limit;
+        let page = req.query.page;
+        let customers = [];
+        if(limit && page) {
+            console.log(limit, page);
+            customers = await showCustomerService(limit, page);
+        } else {
+            customers = await showCustomerService();
+        }
         return res.status(200).json({
             EC: 0,
             data: customers,

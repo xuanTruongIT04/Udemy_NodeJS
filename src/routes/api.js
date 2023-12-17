@@ -35,4 +35,10 @@ routerAPI.delete('/customers', deleteACustomerAPI);
 routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
 routerAPI.delete('/customers-many', deleteArrayCustomerAPI);
 
+routerAPI.get('/info/:name/:city', (req, res) => {
+    return res.status(200).json({
+        data: req.params
+    })
+});
+
 module.exports = routerAPI;
