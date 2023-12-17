@@ -17,8 +17,7 @@ module.exports = {
 
         let customers = [];
         if(limit && page) {
-            console.log(limit, page);
-            customers = await showCustomerService(limit, page, name);
+            customers = await showCustomerService(limit, page, req.query);
         } else {
             customers = await showCustomerService();
         }
