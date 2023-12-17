@@ -12,10 +12,13 @@ module.exports = {
     getCustomersAPI: async (req, res) => {
         let limit = req.query.limit;
         let page = req.query.page;
+        let name = req.query.name;
+
+
         let customers = [];
         if(limit && page) {
             console.log(limit, page);
-            customers = await showCustomerService(limit, page);
+            customers = await showCustomerService(limit, page, name);
         } else {
             customers = await showCustomerService();
         }
