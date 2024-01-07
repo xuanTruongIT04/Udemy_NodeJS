@@ -1,0 +1,38 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "Xuan Truong is learning NodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuanTruongIT04/Udemy_NodeJS.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Xuan Truong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xuanTruongIT04/Udemy_NodeJS/issues"
+  },
+  "homepage": "https://github.com/xuanTruongIT04/Udemy_NodeJS#readme",
+  "dependencies": {
+    "api-query-params": "5.4.0",
+    "dotenv": "^16.0.3",
+    "ejs": "3.1.8",
+    "express": "4.18.2",
+    "express-fileupload": "1.4.0",
+    "joi": "17.7.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "7.6.2",
+    "mongoose-delete": "1.0.1",
+    "mysql2": "2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
