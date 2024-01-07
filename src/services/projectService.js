@@ -30,6 +30,15 @@ const createProjectService = async (dataProject) => {
             } else {
                 return null;
             }
+        } else if(dataProject.type === "DELETE-USER"){
+            let project = await Project.findById(dataProject.projectId);
+            if (project) {
+                project.usersInfor.pull(...dataProject.userArr);
+                let result = await project.save();
+                return result;
+            } else {
+                return null;
+            }
         }
     } catch (err) {
         console.log(err);
@@ -37,7 +46,31 @@ const createProjectService = async (dataProject) => {
     }
 };
 
+const putUpdateProjectService = async (id, dataProject) => {
+    try {
+        let result = await Project.updateOne({ _id: id }, dataProject);
+
+        return result;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+const deleteAProjectService = async (id) => {
+    try {
+        let result = await Project.deleteById(id);
+        return result;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+
+
 module.exports = {
     showProjectService,
     createProjectService,
+    putUpdateProjectService,
+    deleteAProjectService
 };

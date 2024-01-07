@@ -19,7 +19,19 @@ const {
     postUploadFileMultipleAPI,
 } = require('../controllers/apiController');
 
-const { postCreateProjectAPI, getProjectsAPI } = require('../controllers/projectController');
+const {
+    postCreateProjectAPI,
+    getProjectsAPI,
+    putUpdateProjectAPI,
+    deleteAProjectAPI
+} = require('../controllers/projectController');
+
+const {
+    postCreateTaskAPI,
+    getTasksAPI,
+    putUpdateTaskAPI,
+    deleteATaskAPI
+} = require('../controllers/taskController');
 
 routerAPI.get('/users', getUsersAPI);
 routerAPI.post('/users', postUsersAPI);
@@ -39,6 +51,13 @@ routerAPI.delete('/customers-many', deleteArrayCustomerAPI);
 
 routerAPI.get('/projects', getProjectsAPI);
 routerAPI.post('/projects', postCreateProjectAPI);
+routerAPI.put('/projects', putUpdateProjectAPI);
+routerAPI.delete('/projects', deleteAProjectAPI);
+
+routerAPI.get('/tasks', getTasksAPI);
+routerAPI.post('/tasks', postCreateTaskAPI);
+routerAPI.put('/tasks', putUpdateTaskAPI);
+routerAPI.delete('/tasks', deleteATaskAPI);
 
 routerAPI.get('/info/:name/:city', (req, res) => {
     return res.status(200).json({

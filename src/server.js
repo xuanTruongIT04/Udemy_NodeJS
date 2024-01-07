@@ -64,7 +64,6 @@ app.use('/v1/api/', apiRouter);
             ]
         })
         let a = await collection.findOne({ address: "Ha noi" })
-        console.log("FIND CUSTOMER: ", a);
 
         app.listen(port, () => {
             console.log(`Example app listening on port ${port}`);
