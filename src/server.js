@@ -44,25 +44,25 @@ app.use('/v1/api/', apiRouter);
         const db = client.db(dbName);
         const collection = db.collection('customers');
 
-        collection.insertOne({
-            "name": "Xuan Truong 1",
-            "address": [
-                {
-                    provice: "HN",
-                    country: {
-                        name: 'vietnam',
-                        code: "VN2024",
-                    },
-                },
-                {
-                    provice: "HCM",
-                    country: {
-                        name: 'vietnam',
-                        code: "VN20241",
-                    },
-                },
-            ]
-        })
+        // collection.insertOne({
+        //     "name": "Xuan Truong 1",
+        //     "address": [
+        //         {
+        //             provice: "HN",
+        //             country: {
+        //                 name: 'vietnam',
+        //                 code: "VN2024",
+        //             },
+        //         },
+        //         {
+        //             provice: "HCM",
+        //             country: {
+        //                 name: 'vietnam',
+        //                 code: "VN20241",
+        //             },
+        //         },
+        //     ]
+        // })
         let a = await collection.findOne({ address: "Ha noi" })
 
         app.listen(port, () => {
