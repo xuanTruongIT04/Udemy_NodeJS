@@ -23,17 +23,7 @@ module.exports = {
     },
 
     putUpdateTaskAPI: async (req, res) => {
-        let { id, name, description, status, startDate, endDate } = req.body;
-        console.log(req.body);
-        let dataTask = {
-            name,
-            description,
-            status,
-            startDate,
-            endDate,
-        };
-
-        let task = await putUpdateTaskService(id, dataTask);
+        let task = await putUpdateTaskService(req.body.id, req.body);
         return res.status(200).json({
             EC: 0,
             data: task,

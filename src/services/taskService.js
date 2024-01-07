@@ -21,25 +21,7 @@ const createTaskService = async (dataTask) => {
         if (dataTask.type === 'EMPTY-TASK') {
             let result = await Task.create(dataTask);
             return result;
-        } else if (dataTask.type === 'ADD-USER') {
-            let task = await Task.findById(dataTask.taskId);
-            if (task) {
-                task.usersInfor.push(...dataTask.userArr);
-                let result = await task.save();
-                return result;
-            } else {
-                return null;
-            }
-        } else if(dataTask.type === "DELETE-USER"){
-            let task = await Task.findById(dataTask.taskId);
-            if (task) {
-                task.usersInfor.pull(...dataTask.userArr);
-                let result = await task.save();
-                return result;
-            } else {
-                return null;
-            }
-        }
+        } 
     } catch (err) {
         console.log(err);
         return null;
@@ -48,8 +30,8 @@ const createTaskService = async (dataTask) => {
 
 const putUpdateTaskService = async (id, dataTask) => {
     try {
-        let result = await Task.updateOne({ _id: id }, dataTask);
-
+        let result = await Task.updateOne({ _id: id }, { ...dataTask });
+        console.log(dataTask);
         return result;
     } catch (err) {
         console.log(err);
@@ -67,10 +49,9 @@ const deleteATaskService = async (id) => {
     }
 };
 
-
 module.exports = {
     showTaskService,
     createTaskService,
     putUpdateTaskService,
-    deleteATaskService
+    deleteATaskService,
 };
