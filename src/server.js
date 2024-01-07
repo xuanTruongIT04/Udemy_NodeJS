@@ -30,7 +30,7 @@ app.use('/v1/api/', apiRouter);
 (async () => {
     try {
         // Using mongoose
-        // await connection();
+        await connection();
 
         // Using mongodb driver
         const url = process.env.DB_HOST_WITH_DRIVER;
@@ -38,11 +38,33 @@ app.use('/v1/api/', apiRouter);
         const dbName = process.env.DB_NAME;
 
         // Use connect method to connect to the server
-        await client.connect();
-        console.log('Connected successfully to server');
+        // await client.connect();
+        // console.log('Connected successfully to server');
         
         const db = client.db(dbName);
-        const collection = db.collection('documents');
+        const collection = db.collection('customers');
+
+        collection.insertOne({
+            "name": "Xuan Truong 1",
+            "address": [
+                {
+                    provice: "HN",
+                    country: {
+                        name: 'vietnam',
+                        code: "VN2024",
+                    },
+                },
+                {
+                    provice: "HCM",
+                    country: {
+                        name: 'vietnam',
+                        code: "VN20241",
+                    },
+                },
+            ]
+        })
+        let a = await collection.findOne({ address: "Ha noi" })
+        console.log("FIND CUSTOMER: ", a);
 
         app.listen(port, () => {
             console.log(`Example app listening on port ${port}`);

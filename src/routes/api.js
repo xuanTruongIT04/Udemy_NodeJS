@@ -7,7 +7,7 @@ const {
     postCreateArrayCustomerAPI,
     putUpdateCustomerAPI,
     deleteACustomerAPI,
-    deleteArrayCustomerAPI
+    deleteArrayCustomerAPI,
 } = require('../controllers/customerController');
 
 const {
@@ -18,6 +18,8 @@ const {
     postUploadFileSingleAPI,
     postUploadFileMultipleAPI,
 } = require('../controllers/apiController');
+
+const { postCreateProjectAPI, getProjectsAPI } = require('../controllers/projectController');
 
 routerAPI.get('/users', getUsersAPI);
 routerAPI.post('/users', postUsersAPI);
@@ -35,10 +37,13 @@ routerAPI.delete('/customers', deleteACustomerAPI);
 routerAPI.post('/customers-many', postCreateArrayCustomerAPI);
 routerAPI.delete('/customers-many', deleteArrayCustomerAPI);
 
+routerAPI.get('/projects', getProjectsAPI);
+routerAPI.post('/projects', postCreateProjectAPI);
+
 routerAPI.get('/info/:name/:city', (req, res) => {
     return res.status(200).json({
-        data: req.params
-    })
+        data: req.params,
+    });
 });
 
 module.exports = routerAPI;
